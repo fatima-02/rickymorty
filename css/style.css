@@ -1,3 +1,24 @@
+*{
+padding: 0;
+margin: 0;
+}
 #cabecera{
     background: black;
+}
+
+.contenedorTabla{
+padding: 30px;
+}
+.modal-dialog{
+    background-color: white;
+}
+
+#cabe{
+    background-color: black;
+    color: white;
+}
+
+.modal-body p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15pt;
 }
