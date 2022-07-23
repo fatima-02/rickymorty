@@ -1,80 +1,68 @@
-const fetchData = (api_url) => {
-  return new Promise((resolve, reject) => {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', api_url, true);
-    xhttp.onreadystatechange = () => {
-      if (xhttp.readyState === 4) {
-        (xhttp.status === 200)
-          ? resolve(JSON.parse(xhttp.responseText))
-          : reject(new Error('Test Error', api_url))
-      }
-    }
-    xhttp.send();
-  });
-}
-
-
-
+/**funcion Fetch (promesas) llamado a la API */
 const API = 'https://rickandmortyapi.com/api/character/';
-const maxPageForAPI = 1;
-const apiPage = '?page=:page';
 
+const getData = (apiURL) => {
+    return fetch(apiURL)
+    .then(response => response.json())
+    .then(json => { 
+        printData(json),
+        printPagination(json.info)
+        } )
+    .catch( error => {console.error('Error-->: ', error)})
+    }   
+    
+    
+const printData = (data) => {
+  
+    let html ='';
+    //accedemos al apartado de la api result//
+    data.results.forEach(Object => {
+       html  += `
+              <table class="table">
+              <tbody>
+                <tr>
+                  <td class="col-1 col-sm-2" >${Object.id}</td>
+                  <td class="col-2 col-sm-4">${Object.name}</td>
+                  <td class="col-2 col-sm-2"><button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal${Object.id}">Ver mas</button></td>
+                </tr>
+              </tbody>
+              </table>
 
-const getDataRickAndMorty = async (page) => {
-  try {
-    const { results } = await fetchData(`${API}${apiPage.replace(':page', `${page}`)}`)
-    results.map(character => {
-      const table = tableGenerator(character);
-      tableContent.appendChild(table);
+              <div class="modal fade" id="modal${Object.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+              <div class="modal-header">
+              <h4 class="modal-title" id="staticBackdropLabel">${Object.name}</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <img src="${Object.image}" class="card-img-top" alt="">
+              <p>Especie: ${Object.species}</p>
+                     <p>Estatus: ${Object.status}</p>
+                     <p>Genero: ${Object.gender}</p>
+              </div>
+              </div>
+              </div>
+          </div>`
     });
-  } catch (error) {
-    console.error(error);
-  }
+    //imprimimos la informacion//
+    document.getElementById('tabla').innerHTML = html
+
 }
 
-(function () {
-  for (let i = 1; i <= maxPageForAPI; i++) {
-    getDataRickAndMorty(i);
-  }
-})();
+const printPagination = (info) => {
+    let prevDisable = info.prev == null ? 'disable' : ''; //para desactivar el boton de prev si es que no hay pagina previa//
+    let nextDisable = info.next == null ? 'disable' : ''; //desactiva el boton de next cuando no hay mas paginas//
 
+    let html = `<li class="page-item ${prevDisable}"><a class="page-link" onclick="getData('${info.prev}')" >
+    <img src="img/flecha2.png" alt=""></a></li>`
+    html += `<li class="page-item ${nextDisable}"><a class="page-link" onclick="getData('${info.next}')" >
+    <img src="img/flecha1.png" alt=""></a></li>`
+    document.getElementById('pagination').innerHTML = html;
 
-const tableContent = document.getElementById('table');
-
-const tableGenerator = object => {
-  const table = document.createElement('article');
-  table.classList.add('table')
-
-  table.innerHTML = `
-    <table class="table">
-    <tbody>
-      <tr>
-        <th class="col-sm-2" >${object.id}</th>
-        <td class="col-sm-6">${object.name}</td>
-        <td class="col-sm-4"><button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal${object.id}">Ver mas</button></td>
-      </tr>
-    </tbody>
-  </table>
-
-<!-- Modal -->
-<div class="modal fade" id="modal${object.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="staticBackdropLabel">${object.name}</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img class="rounded mx-auto d-block" src="${object.image}">
-        <p>Especie: ${object.species}</p>
-        <p>Estatus: ${object.status}</p>
-        <p>Genero: ${object.gender}</p>
-      </div>
-    </div>
-  </div>
-</div>
-                  
-    `;
-
-  return table;
 }
+
+getData(API);
+
+
+  
