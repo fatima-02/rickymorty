@@ -5,64 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rick and Morty</title>
+    <!--Bootstrap-->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <header>
-        <div id="cabecera" class="text-center">
-            <img src="./img/Rick-and-Morty.png" class="rounded" alt="..." width="150px">
-        </div>
+  </head>
+  <body>
+    <div>
+        <header>
+            <div id="cabecera" class="text-center">
+                <img src="./img/Rick-and-Morty.png" class="rounded" alt="..." width="150px">
+            </div>
+            <!--slider-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item">
+                            <img src="./img/imgC1.jpg" class="d-block w-100" alt="Img Carrucel" >
+                          </div>
+                          <div class="carousel-item active">
+                            <img src="./img/imgC2.png" class="d-block w-100" alt="Img Carrucel" >
+                          </div>
+                          <div class="carousel-item">
+                            <img src="./img/imgC3.png" class="d-block w-100" alt="Img Carrucel" >
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                      <br>
+          
+        </header>
+     </div>
+     
+     <div>
+    <!--Paginacion-->
+      <ul class="pagination justify-content-center" id="pagination">   
+     </div>
+         
 
-      </header>
+     
+     <!--Tabla-->
+     <div class="container">
+        <div>
+          <table class="table">
+            <thead>
+              <tr id="cabeTabla">
+                  <th class="col-1 col-sm-2">Id</th>
+                  <th class="col-2 col-sm-4">Nombre</th>
+                  <th class="col-2 col-sm-2"></th>
+              </tr>
+          </thead>
+          </table>
     
-      <div class="row">
-          <div class="col-sm-12">
-              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item">
-                      <img src="./img/imgC1.jpg" class="d-block w-100" alt="Img Carrucel" >
-                    </div>
-                    <div class="carousel-item active">
-                      <img src="./img/imgC2.png" class="d-block w-100" alt="Img Carrucel" >
-                    </div>
-                    <div class="carousel-item">
-                      <img src="./img/imgC3.png" class="d-block w-100" alt="Img Carrucel" >
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                <br>
-                <!--tabla-->
-                <div class= "contenedorTabla" id="table">
-                  <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr id="cabe">
-                            <th class="col-sm-2">Id</th>
-                            <th class="col-sm-4">Nombre</th>
-                            <th class="col-sm-6"></th>
-                        </tr>
-                    </thead>
-                </div>
+              <div id="tabla">
+    
+              </div>
           </div>
-      </div>
-      <div id="modal">
+    
+          <div id="modal">
+    
 
+        </div>
       </div>
-      <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-      <script src="./js/main.js"></script>
-  
+      
+      <br>
+      <footer>
+        <div class="row fixed-bottom w-120 text-light text-center">
+          <div class="col mt-1">
+            <P>Fatima Flores & Melary Sanchez</P>
+          </div>
+         
+        </div>
+      </footer>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
   </body>
-  </html>
+</html>
