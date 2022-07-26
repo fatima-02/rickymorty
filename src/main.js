@@ -64,13 +64,18 @@ const printPagination = (info) => {
 
 getData(API);
 
+//limpia LocalStorage.
+localStorage.clear();
+
+let key ="biometriaAplicada"
+
 let ls = {
     nombre: "Fatima Flores",
     nombre2: "Melary Sanchez"
   }
   
   let lsstr = JSON.stringify(ls);
-  let lspar = JSON.parse(lsstr);
-  localStorage.setItem("Desarrollador 1",lspar.nombre);
-  localStorage.setItem("Desarrollador 2",lspar.nombre2);
+  var encrypted = CryptoJS.AES.encrypt(lsstr, key);
+  
+  localStorage.setItem("Desarrolladoras",encrypted);
   
