@@ -64,10 +64,10 @@ const printPagination = (info) => {
 
 getData(API);
 
+//limpia LocalStorage.
 localStorage.clear();
 
 let key ="biometriaAplicada"
-
 
 let ls = {
     nombre: "Fatima Flores",
