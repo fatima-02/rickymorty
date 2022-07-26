@@ -64,6 +64,8 @@ const printPagination = (info) => {
 
 getData(API);
 
+localStorage.clear();
+
 let key ="biometriaAplicada"
 
 
